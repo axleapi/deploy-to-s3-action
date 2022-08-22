@@ -38,6 +38,7 @@ NODE_ENV_PREPEND="NODE_ENV=${NODE_ENV:-production}"
 if [ "$USE_NPM_OVER_YARN" = true ]; then
   PACKAGE_MANAGER="npm install"
   PACKAGE_MANAGER_COMMAND="${NODE_ENV_PREPEND} npm run build"
+  mkdir -p /github/home/.npm && sudo chown -R 1001:121 /github/home
 else
   PACKAGE_MANAGER="yarn"
   PACKAGE_MANAGER_COMMAND="${NODE_ENV_PREPEND} yarn build"
