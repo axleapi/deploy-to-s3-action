@@ -31,6 +31,10 @@ if [ -z "$RUN_BUILD_STEP" ]; then
   RUN_BUILD_STEP=true
 fi
 
+if [ "$DEST_DIR_LOWER_CASE" = true ]; then
+  DEST_DIR=$(echo $DEST_DIR| tr '[:upper:]' '[:lower:]')
+fi
+
 # Override default NODE_ENV (production) if set by user.
 NODE_ENV_PREPEND="NODE_ENV=${NODE_ENV:-production}"
 
