@@ -32,7 +32,9 @@ if [ -z "$RUN_BUILD_STEP" ]; then
 fi
 
 if [ "$DEST_DIR_LOWER_CASE" = true ]; then
-  DEST_DIR=$(echo $DEST_DIR| tr '[:upper:]' '[:lower:]')
+  DEST_DIR=$(echo "$DEST_DIR" | sed -e "s/\(.*\)/\L\1/" )
+  echo "DEBUG: DEST_DIR = '$DEST_DIR'"
+  exit 1
 fi
 
 # Override default NODE_ENV (production) if set by user.
@@ -67,7 +69,7 @@ if [ "$RUN_BUILD_STEP" = true ]; then
   && sh -c "${PACKAGE_MANAGER_COMMAND}"
 fi
 
-sh -c "aws s3 sync ${SOURCE_DIR:-public} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
+sh -c "aws s3 sync ${SOURCE_DIR:-public} s3://${AWS_S3_BUCKET}/test/${DEST_DIR} \
   --profile deploy-to-s3-action \
   --no-progress \
   ${ENDPOINT_APPEND} $*"
