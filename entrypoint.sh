@@ -40,8 +40,8 @@ if [ "$DEST_DIR_LOWER_CASE" = true ]; then
   TEST1=$(sh -c 'echo $GITHUB_REF_NAME | tr "[:upper:]" "[:lower:]"')
   echo "DEBUG: "TEST1" = '$TEST1'"
     
-  DEST_DIR=$(echo "$AWS_S3_BUCKET" | sed -e "s/\(.*\)/\L\1/" )
-  echo "DEBUG: AWS_S3_BUCKET = '$DEST_DIR'"
+  DEST_DIR=$(echo "$DEST_DIR" | sed -e "s/\(.*\)/\L\1/" )
+  echo "DEBUG: DEST_DIR = '$DEST_DIR'"
   
   exit 1
 fi
