@@ -35,18 +35,18 @@ if [ "$DEST_DIR_LOWER_CASE" = true ]; then
   echo "DEBUG: "DEST_DIR" = '$DEST_DIR'"
   TEST=$DEST_DIR
   
-  TEST1=$(sh -c 'echo $DEST_DIR | tr "[:upper:]" "[:lower:]"')
+  TEST1=$(sh -c 'echo ${DEST_DIR} | tr "[:upper:]" "[:lower:]"')
   echo "DEBUG: "TEST1" = '$TEST1'"
     
-  TEST2=$(echo $DEST_DIR)
+  TEST2=$(echo ${DEST_DIR})
   echo "DEBUG: "TEST2" = '$TEST2'"
   
-  DEST_DIR=$(echo $DEST_DIR | sed -e "s/\(.*\)/\L\1/" )
+  DEST_DIR=$(echo ${DEST_DIR} | sed -e "s/\(.*\)/\L\1/" )
   echo "DEBUG: DEST_DIR = '$DEST_DIR'"
 
-  DEST_DIR=`echo $TEST | tr '[:upper:]' '[:lower:]'`
-  echo "DEBUG: DEST_DIR = '$DEST_DIR'"
-  echo "DEBUG: "TEST" = '$TEST'"
+  DEST_DIR=`echo ${TEST} | tr '[:upper:]' '[:lower:]'`
+  echo "DEBUG: DEST_DIR = '${DEST_DIR}'"
+  echo "DEBUG: "TEST" = '${TEST}'"
   
   exit 1
 fi
