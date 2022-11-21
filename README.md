@@ -10,22 +10,22 @@ name: Upload Static Website to S3
 on:
   push:
     branches:
-    - master # Change to main if you use that instead
+    - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - uses: jbelelieu/react-deploy-to-s3-action@main
+    - uses: axleapi/react-deploy-to-s3-action@main
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --follow-symlinks --delete
       env:
         NODE_ENV: development # optional: defaults to production
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-west-1 # optional: defaults to us-east-1
+        AWS_REGION: us-east-1 # optional: defaults to us-east-1
         SOURCE_DIR: . # Upload from the root directory of the repo
         RUN_BUILD_STEP: false # Tells the action to skip the build steps.
 ```
@@ -60,17 +60,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - uses: jbelelieu/react-deploy-to-s3-action@main
+    - uses: axleapi/react-deploy-to-s3-action@main
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --follow-symlinks --delete
       env:
         NODE_ENV: development # optional: defaults to production
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-west-1 # optional: defaults to us-east-1
+        AWS_REGION: us-east-1 # optional: defaults to us-east-1
         SOURCE_DIR: bundle # optional: defaults to public
-        USE_NPM_OVER_YARN: true # optional: defaults to false
+        USE_NPM_OVER_YARN: false # optional: defaults to false
 ```
 
 ### Configuration
